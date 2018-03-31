@@ -2,7 +2,7 @@ import socket
 import ssl
 
 def main():
-	host = "server ip address"
+	host = "server ip addr"
 	port = 8000
 	clients = []
 	s = socket.socket()
