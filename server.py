@@ -38,7 +38,7 @@ class TcpServer:
       stream = ssl.wrap_socket(c, keyfile="server.key",
                                   certfile="server.crt",
                                   server_side=True, cert_reqs=ssl.CERT_NONE,
-                                  ssl_version=ssl.PROTOCOL_TLSv1,
+                                  ssl_version=ssl.PROTOCOL_TLSv1_2,
                                   ca_certs=ssl.CERT_NONE,
                                   do_handshake_on_connect=False,
                                   suppress_ragged_eofs=True, ciphers=None)
