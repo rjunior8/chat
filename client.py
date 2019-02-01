@@ -1,5 +1,7 @@
+import os
 import ssl
 import socket
+import signal
 from threading import Thread
 
 class TcpClient:
@@ -39,6 +41,8 @@ class TcpClient:
       ssl_sock.send(bytes("[{}]: {}".format(socket.gethostname(), message).encode("utf-8")))
       message = input("<{}> ".format(socket.gethostname()))
     ssl_sock.close()
+    os.killpg(os.getpid(), signal.SIGTERM)                                      #Killing the app because receiver Thread still runs
+    exit(0)
 
 if __name__ == "__main__":
   TcpClient.init()
