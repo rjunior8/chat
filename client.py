@@ -26,15 +26,16 @@ class TcpClient:
     st.start()
 
 
+  #the thread that does all the receiving from the server
   def receiverThread(ssl_sock):
-    while True:
-      data = ssl_sock.recv(1024).decode("utf-8")
-      if not data:
-        print("CONNECTION ENDED")
+    while True:                                                                 #loops eternally and because next row...
+      data = ssl_sock.recv(1024).decode("utf-8")                                #...blocks until a packet is received it will not consume all CPU ressources
+      if not data:                                                              #if no data is received (=server disconnected)
+        print("CONNECTION ENDED")                                               #means that the program can end
         break
       print(data)
 
-
+  #this thread does all the sending to the server
   def senderThread(ssl_sock):
     message = input("<{}> ".format(socket.gethostname()))
     while message != "exit()":

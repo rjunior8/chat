@@ -26,9 +26,10 @@ class TcpServer:
     s.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)                                   #TO circumvent the "PORT STILL IN USE" error
     s.bind((host, port))
     s.listen(5)
-    cl = Thread(target=TcpServer.clientListener, args = (s,))                                #The Thread that listens for new incoming clients
+    cl = Thread(target=TcpServer.clientListener, args = (s,))                   #The Thread that listens for new incoming clients
     cl.start()
 
+  #listens to new connections
   def clientListener(s):
     while True:
       c, addr = s.accept()
