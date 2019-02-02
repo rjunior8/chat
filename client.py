@@ -113,7 +113,7 @@ class TcpClient(cmd.Cmd):
   #this thread does all the sending to the server
   def send(self, line):
     try:
-      self.ssl_sock.send(bytes("[{}]: {}".format(socket.gethostname(), line + "\n" + self.user + "\n" + self.password).encode("utf-8")))
+      self.ssl_sock.send(bytes("[{}]: {}".format(socket.gethostname(), line + "\n").encode("utf-8")))
       if debug: print("package sent")
     except:
       print("lost connection, trying to reconnect")
