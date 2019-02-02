@@ -17,14 +17,13 @@ class TcpServer:
 
   clients = []
   threads = []
+  host = "localhost"
+  port = 8000
 
   def init():
-    host = "localhost"
-    port = 8000
-    clients = []
     s = socket()
     s.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)                                   #TO circumvent the "PORT STILL IN USE" error
-    s.bind((host, port))
+    s.bind((TcpServer.host, TcpServer.port))
     s.listen(5)
     cl = Thread(target=TcpServer.clientListener, args = (s,))                   #The Thread that listens for new incoming clients
     cl.start()
@@ -38,7 +37,7 @@ class TcpServer:
       stream = ssl.wrap_socket(c, keyfile="server.key",
                                   certfile="server.crt",
                                   server_side=True, cert_reqs=ssl.CERT_NONE,
-                                  ssl_version=ssl.PROTOCOL_TLSv1_2,
+                                  ssl_version=ssl.PROTOCOL_TLSv1_2,             #TODO: set to TLSv1_3 when available
                                   ca_certs=ssl.CERT_NONE,
                                   do_handshake_on_connect=False,
                                   suppress_ragged_eofs=True, ciphers=None)
