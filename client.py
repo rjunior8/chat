@@ -9,7 +9,7 @@ import traceback
 from threading import Thread
 from termcolor import colored, cprint
 
-debug = True
+debug = False
 
 class colors:
     default = '\033[0;0m'
