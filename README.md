@@ -1,1 +1,3 @@
-# chat
+# python3 ssl chat thing
+
+tanks to rjunior8 for the initial project, i just added some stuff...
